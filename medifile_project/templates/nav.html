@@ -1,0 +1,50 @@
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1">
+        {% if user.is_authenticated %}
+        <a class="btn btn-sm text-dark btn-outline-secondary" href="{% url 'logout'%}">Logout</a>
+        {%else%}
+        <a class="btn btn-sm text-dark btn-outline-secondary" href="{% url 'login'%}">Login</a>
+        {%endif%}
+      </div>
+      <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="#">GLOBAL MEDIFILE</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+
+        <a class="btn btn-sm text-dark btn-outline-secondary" href="{% url 'signup' %}">REGISTER</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <a class="p-2 text-muted" href="#">Hospitals List</a>
+      <a class="p-2 text-muted" href="#">Doctors List</a>
+      <a class="p-2 text-muted" href="#">COVID-19 UPDATES</a>
+      <a class="p-2 text-muted" href="#">Global News</a>
+      <a class="p-2 text-muted" href="#">Health</a>
+      <a class="p-2 text-muted" href="#">About</a>
+      <a class="p-2 text-muted" href="#">Support</a>
+
+    </nav>
+  </div>
+</div>

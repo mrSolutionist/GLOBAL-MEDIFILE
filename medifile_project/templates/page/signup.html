@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="w-100 justify-content-center row ">
+
+
+    <div class="row justify-content-between">
+
+
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">HOSPITAL REGISTER</div>
+            <div class="card-body">
+               <a href="{% url 'hospital_signup'%}">  <button  class="btn btn-default">REGISTER</button></a> 
+            </div>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">DOCTOR REGISTER</div>
+            <div class="card-body">
+             <a href="{% url 'doctor_signup'%}">  <button  class="btn btn-default">REGISTER</button></a> 
+            </div>
+        </div>
+
+    </div>
+</div>
+{%endblock%}
