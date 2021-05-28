@@ -1,26 +1,57 @@
 from django.http.response import HttpResponse
-from django.contrib.auth.forms import  AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from .forms import HospitalSignupForm, id_generator ,DoctorSignupForm
+from .forms import HospitalSignupForm, id_generator, DoctorSignupForm, PatientsSignupForm
 from django.contrib.auth import authenticate, get_user_model
 from hospitals.models import HospitalData
 from django.contrib.auth import login
+from doctors.models import DoctorsData
+from patients.models import PatientsData
 
 user = get_user_model()
 print(user)
 # Create your views here.
 
+# doctor SIgn UP
+
 
 def doctor_signup(request):
-    form = DoctorSignupForm(request.POST)
+    form = DoctorSignupForm()
     if request.method == 'POST':
         form = DoctorSignupForm(request.POST)
+        print("one")
         if form.is_valid():
-            first_name = request.POST.get("first_name")
-            last_name = request.POST.get("last_name")
-            
-    return render(request, 'registration/doctor_sign_up.html',{'form':form})
 
+            print("2")
+            first_name = form.cleaned_data.get("name")
+            print(first_name)
+            last_name = form.cleaned_data.get("last_name")
+            print(last_name)
+            birth = form.cleaned_data.get('birth')
+            print(birth)
+            gender = form.cleaned_data.get("gender")
+            print(gender)
+            phone = form.cleaned_data.get("phone")
+            print(phone)
+            email = form.cleaned_data.get("email")
+            print(email)
+            password1 = form.cleaned_data.get('password1')
+            password2 = form.cleaned_data.get('password2')
+            if password1 == password2:
+                GIN = id_generator()
+                doc = user.objects.create_doctor(GIN=GIN, password=password1, email=email,
+                                                 gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name)
+                docData = DoctorsData(newDoc=doc)
+                docData.save()
+                return HttpResponse("doc added")
+
+        else:
+            return HttpResponse("noo baby")
+
+    return render(request, 'registration/doctor_sign_up.html', {'form': form})
+
+
+# hospital SignUp
 
 def hospital_signup(request):
     if request.method == 'POST':
@@ -51,8 +82,47 @@ def hospital_signup(request):
     else:
         if request.method == "GET":
 
-            form = HospSignupForm()
+            form = HospitalSignupForm()
             return render(request, 'registration/hospital_reg.html', {'form': form})
+
+
+# patients Sign up
+
+
+def patient_signup(request):
+    form = PatientsSignupForm()
+    if request.method == 'POST':
+        form = PatientsSignupForm(request.POST)
+        print("one")
+        if form.is_valid():
+
+            print("2")
+            first_name = form.cleaned_data.get("name")
+            print(first_name)
+            last_name = form.cleaned_data.get("last_name")
+            print(last_name)
+            birth = form.cleaned_data.get('birth')
+            print(birth)
+            gender = form.cleaned_data.get("gender")
+            print(gender)
+            phone = form.cleaned_data.get("phone")
+            print(phone)
+            email = form.cleaned_data.get("email")
+            print(email)
+            password1 = form.cleaned_data.get('password1')
+            password2 = form.cleaned_data.get('password2')
+            if password1 == password2:
+                GIN = id_generator()
+                pat = user.objects.create_patient(GIN=GIN, password=password1, email=email,
+                                                  gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name)
+                patData = PatientsData(newPat=pat)
+                patData.save()
+                return HttpResponse("pat added")
+
+        else:
+            return HttpResponse("noo baby")
+
+    return render(request, 'registration/patient_sign_up.html', {'form': form})
 
 
 def Newlogin(request):
@@ -62,7 +132,7 @@ def Newlogin(request):
         user = authenticate(request, GIN=GIN, password=password)
 
         if user is not None:
-            login(request,user)
+            login(request, user)
 
             if user.is_hospital:
                 return HttpResponse("hosp")

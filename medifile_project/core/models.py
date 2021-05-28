@@ -14,7 +14,7 @@ class NewUserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
         )
-        user.GIN =GIN
+        user.GIN = GIN
 
         user.name = name
 
@@ -37,26 +37,34 @@ class NewUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_doctor(self, email, first_name, last_name, password):
+    def create_doctor(self, email,GIN, name, last_name, birth, gender, phone, password):
 
         user = self.create_user(
+            GIN,
             email,
-            first_name,
-            last_name,
+            name,
             password=password,
         )
+        user.last_name=last_name
+        user.birth=birth
+        user.gender=gender
+        user.phone=phone
         user.is_doctor = True
         user.save(using=self._db)
         return user
 
-    def create_patient(self, email, first_name, last_name, password):
+    def create_patient(self, email,GIN, name, last_name, birth, gender, phone, password):
 
         user = self.create_user(
             email,
-            first_name,
+            name,
             last_name,
             password=password,
         )
+        user.last_name=last_name
+        user.birth=birth
+        user.gender=gender
+        user.phone=phone
         user.is_patient = True
         user.save(using=self._db)
         return user
@@ -75,15 +83,20 @@ class NewUserManager(BaseUserManager):
 
 
 class NewUser(AbstractBaseUser):
+    gender = models.CharField(null=True, max_length=1)
 
     # GIN = models.IntegerField(unique=True)  # general id number ,unique
     GIN = models.CharField(max_length=6, null=True, blank=True, unique=True)
 
+    age = models.IntegerField(null=True)
+
+    phone = models.IntegerField(null=True)
+
+    birth = models.CharField(null=True, max_length=12)
+
     email = models.EmailField(max_length=255, null=True)
 
     name = models.CharField(max_length=255, null=True)
-
-    first_name = models.CharField(max_length=255, null=True)
 
     last_name = models.CharField(max_length=255, null=True)
 
