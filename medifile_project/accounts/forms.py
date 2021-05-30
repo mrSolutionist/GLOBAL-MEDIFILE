@@ -3,6 +3,7 @@ from django import forms as f
 from django.contrib.auth import get_user_model
 import random
 import string
+from hospitals.models import HospitalData
 user = get_user_model()
 
 
@@ -49,11 +50,14 @@ class DoctorSignupForm(CustomUserCreationForm):
         attrs={'class': 'input--style-4', 'placeholder': 'password'}))
     password2 = f.CharField(widget=f.PasswordInput(
         attrs={'class': 'input--style-4', 'placeholder': 'retype'}))
+    
+    x = f.ModelChoiceField(queryset=HospitalData.objects.all())
+    whichHosp = x.hospital.id
 
     class Meta:
         model = user
         fields = ('email', 'name', 'last_name',
-                  'phone', 'birth','gender')
+                  'phone', 'birth','gender','whichHosp')
 
 
 

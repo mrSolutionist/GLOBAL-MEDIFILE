@@ -37,6 +37,7 @@ def doctor_signup(request):
             print(email)
             password1 = form.cleaned_data.get('password1')
             password2 = form.cleaned_data.get('password2')
+            whichHosp = form.cleaned_data.get('whichHosp')
             if password1 == password2:
                 GIN = id_generator()
                 doc = user.objects.create_doctor(GIN=GIN, password=password1, email=email,

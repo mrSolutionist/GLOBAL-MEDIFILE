@@ -112,6 +112,8 @@ class NewUser(AbstractBaseUser):
 
     admin = models.BooleanField(default=False, null=True)  # superuser
 
+    whichHosp = models.CharField(max_length=255, null=True)
+
     USERNAME_FIELD = 'GIN'
     REQUIRED_FIELDS = []
 

@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'medifile_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'global_medifile',
+        'NAME': 'global_medifile_test',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
