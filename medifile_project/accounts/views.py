@@ -37,11 +37,13 @@ def doctor_signup(request):
             print(email)
             password1 = form.cleaned_data.get('password1')
             password2 = form.cleaned_data.get('password2')
-            whichHosp = form.cleaned_data.get('whichHosp')
+            x = form.cleaned_data.get('whichHosp')
+            whichHosp = x.id
+
             if password1 == password2:
                 GIN = id_generator()
                 doc = user.objects.create_doctor(GIN=GIN, password=password1, email=email,
-                                                 gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name)
+                                                 gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name,whichHosp=whichHosp)
                 docData = DoctorsData(newDoc=doc)
                 docData.save()
                 return HttpResponse("doc added")
@@ -112,6 +114,9 @@ def patient_signup(request):
             print(email)
             password1 = form.cleaned_data.get('password1')
             password2 = form.cleaned_data.get('password2')
+
+            x = form.cleaned_data.get('whichDoc')
+            whichDoc = x.id
             if password1 == password2:
                 GIN = id_generator()
                 pat = user.objects.create_patient(GIN=GIN, password=password1, email=email,
@@ -136,7 +141,7 @@ def Newlogin(request):
             login(request, user)
 
             if user.is_hospital:
-                return HttpResponse("hosp")
+                return HttpResponse("hospitalIndex")
 
             if user.is_doctor is True:
                 return HttpResponse("doc")

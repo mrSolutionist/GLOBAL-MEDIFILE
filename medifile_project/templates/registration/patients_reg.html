@@ -2,11 +2,12 @@
 {%load static%}
 
 {% block content%}
+
 <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
     <div class="wrapper wrapper--w680">
         <div class="card card-4">
             <div class="card-body">
-                <h2 class="title">Registration Form</h2>
+                <h2 class="title"> Patients Registration Form</h2>
                 <form method="POST">
                     {%csrf_token%}
                     <div class="row row-space">
@@ -76,7 +77,7 @@
                     <div class="input-group">
                         <label class="label">Hosital</label>
                         <div class="rs-select2 js-select-simple select--no-search">
-                            {{form.whichHosp}}
+                            {{form.whichDoc}}
                         </div>
                     </div>
                     <div class="p-t-15">

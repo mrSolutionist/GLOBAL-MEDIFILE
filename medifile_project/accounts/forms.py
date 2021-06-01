@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 import random
 import string
 from hospitals.models import HospitalData
+from doctors.models import DoctorsData
 user = get_user_model()
 
 
@@ -38,7 +39,7 @@ class DoctorSignupForm(CustomUserCreationForm):
     email = f.EmailField(widget=f.EmailInput(
         attrs={'class': 'input--style-4', 'placeholder': 'email'}))
     gender = f.ChoiceField(choices=GENDER_CHOICES, widget=f.RadioSelect(
-        attrs={'class':'d-inline-flex'}))
+        attrs={'class': 'd-inline-flex'}))
 
     birth = f.DateField(widget=f.DateInput(
         attrs={'class': 'input--style-4', 'placeholder': 'birthday'}))
@@ -50,15 +51,14 @@ class DoctorSignupForm(CustomUserCreationForm):
         attrs={'class': 'input--style-4', 'placeholder': 'password'}))
     password2 = f.CharField(widget=f.PasswordInput(
         attrs={'class': 'input--style-4', 'placeholder': 'retype'}))
-    
-    x = f.ModelChoiceField(queryset=HospitalData.objects.all())
-    whichHosp = x.hospital.id
 
+    whichHosp = f.ModelChoiceField(queryset=HospitalData.objects.all())
+
+   
     class Meta:
         model = user
         fields = ('email', 'name', 'last_name',
-                  'phone', 'birth','gender','whichHosp')
-
+                  'phone', 'birth', 'gender','whichHosp')
 
 
 class PatientsSignupForm(CustomUserCreationForm):
@@ -73,7 +73,7 @@ class PatientsSignupForm(CustomUserCreationForm):
     email = f.EmailField(widget=f.EmailInput(
         attrs={'class': 'input--style-4', 'placeholder': 'email'}))
     gender = f.ChoiceField(choices=GENDER_CHOICES, widget=f.RadioSelect(
-        attrs={'class':'d-inline-flex'}))
+        attrs={'class': 'd-inline-flex'}))
 
     birth = f.DateField(widget=f.DateInput(
         attrs={'class': 'input--style-4', 'placeholder': 'birthday'}))
@@ -85,8 +85,10 @@ class PatientsSignupForm(CustomUserCreationForm):
         attrs={'class': 'input--style-4', 'placeholder': 'password'}))
     password2 = f.CharField(widget=f.PasswordInput(
         attrs={'class': 'input--style-4', 'placeholder': 'retype'}))
+        
+    whichDoc = f.ModelChoiceField(queryset=DoctorsData.objects.all())
 
     class Meta:
         model = user
         fields = ('email', 'name', 'last_name',
-                  'phone', 'birth','gender')
+                  'phone', 'birth', 'gender')

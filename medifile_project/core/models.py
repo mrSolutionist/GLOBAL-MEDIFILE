@@ -28,8 +28,8 @@ class NewUserManager(BaseUserManager):
 
         user = self.create_user(
             GIN,
-            email,
-            name,
+            email=email,
+            name=name,
             password=password,
         )
         user.staff = True
@@ -37,34 +37,36 @@ class NewUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_doctor(self, email,GIN, name, last_name, birth, gender, phone, password):
+    def create_doctor(self, email, GIN, name, last_name, birth, gender, phone, password, whichHosp):
 
         user = self.create_user(
             GIN,
-            email,
-            name,
+            email=email,
+            name=name,
             password=password,
         )
-        user.last_name=last_name
-        user.birth=birth
-        user.gender=gender
-        user.phone=phone
+        user.whichHosp = whichHosp
+        user.last_name = last_name
+        user.birth = birth
+        user.gender = gender
+        user.phone = phone
         user.is_doctor = True
         user.save(using=self._db)
         return user
 
-    def create_patient(self, email,GIN, name, last_name, birth, gender, phone, password):
+    def create_patient(self, email, GIN, name, last_name, birth,whichDoc, gender, phone, password):
 
         user = self.create_user(
-            email,
-            name,
-            last_name,
+            GIN,
+            email=email,
+            name=name,
             password=password,
         )
-        user.last_name=last_name
-        user.birth=birth
-        user.gender=gender
-        user.phone=phone
+        user.whichDoc = whichDoc
+        user.last_name = last_name
+        user.birth = birth
+        user.gender = gender
+        user.phone = phone
         user.is_patient = True
         user.save(using=self._db)
         return user
@@ -113,6 +115,9 @@ class NewUser(AbstractBaseUser):
     admin = models.BooleanField(default=False, null=True)  # superuser
 
     whichHosp = models.CharField(max_length=255, null=True)
+
+    whichDoc = models.CharField(max_length=255, null=True)
+
 
     USERNAME_FIELD = 'GIN'
     REQUIRED_FIELDS = []

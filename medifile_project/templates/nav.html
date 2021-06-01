@@ -37,10 +37,17 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 text-muted" href="#">Hospitals List</a>
+      {% if user.is_hospital%}
+      <a class="p-2 text-muted" href="{% url 'hospitalIndex'%}">HOME</a>
+      {% elif user.is_doctor%}
+      <a class="p-2 text-muted" href="">HOME</a>
+      {%else%}
+      <a class="p-2 text-muted" href="#">HOME</a>
+      {%endif%}
+      
       <a class="p-2 text-muted" href="#">Doctors List</a>
       <a class="p-2 text-muted" href="#">COVID-19 UPDATES</a>
-      <a class="p-2 text-muted" href="#">Global News</a>
+      <a class="p-2 text-muted" href="#">Hospitals List</a>
       <a class="p-2 text-muted" href="#">Health</a>
       <a class="p-2 text-muted" href="#">About</a>
       <a class="p-2 text-muted" href="#">Support</a>

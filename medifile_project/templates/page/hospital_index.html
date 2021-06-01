@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class='container justify-content-center'>
+ 
+
+
+  <div class="jumbotron">
+    <h1 class="display-4">{{user.name}}</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+      featured content or information.</p>
+    <hr class="my-4">
+  
+  </div>
+</div>
+
+<div class='container' >
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">DOCTORS</h5>
+          <h1 class="card-text ">{{totalDocs}}</h1>
+          <a href="#" class="btn btn-primary">View</a>
+        </div>
+      </div>
+    </div>
+   
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">PATIENTS</h5>
+          <p class="card-text">{{totalPats}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='container'>
+<table class="table table-striped">
+
+  <thead>
+    <tr class="jumbotron">
+      <th>DOCTORS LIST</th>
+    </tr>
+    <tr>
+      <th scope="col">no.</th>
+      <th scope="col">NAME</th>
+      <th scope="col">GENDER</th>
+      <th scope="col">PHONE</th>
+      <th scope='col'> EMAIL</th>
+      <th scope='col'>PATIENTS</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for doc in docs%}
+    <tr>
+      <th scope="row">{{forloop.counter}}
+
+      </th>
+      <td>{{doc.name}} {{doc.last_name}}</td>
+      <td>{{doc.gender}}</td>
+      <td>{{doc.phone}}</td>
+      <td>{{doc.email}}</td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+</div>
+
+
+{%endblock%}
