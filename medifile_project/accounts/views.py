@@ -46,7 +46,7 @@ def doctor_signup(request):
                                                  gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name,whichHosp=whichHosp)
                 docData = DoctorsData(newDoc=doc)
                 docData.save()
-                return HttpResponse("doc added")
+                return redirect('doctorsIndex')
 
         else:
             return HttpResponse("noo baby")
@@ -120,7 +120,7 @@ def patient_signup(request):
             if password1 == password2:
                 GIN = id_generator()
                 pat = user.objects.create_patient(GIN=GIN, password=password1, email=email,
-                                                  gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name)
+                                                  gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name,whichDoc=whichDoc)
                 patData = PatientsData(newPat=pat)
                 patData.save()
                 return HttpResponse("pat added")
@@ -128,7 +128,7 @@ def patient_signup(request):
         else:
             return HttpResponse("noo baby")
 
-    return render(request, 'registration/patient_sign_up.html', {'form': form})
+    return render(request, 'registration/patients_reg.html', {'form': form})
 
 
 def Newlogin(request):
@@ -141,10 +141,10 @@ def Newlogin(request):
             login(request, user)
 
             if user.is_hospital:
-                return HttpResponse("hospitalIndex")
+                return redirect("hospitalIndex")
 
             if user.is_doctor is True:
-                return HttpResponse("doc")
+                return redirect('doctorsIndex')
 
         else:
             form = AuthenticationForm()

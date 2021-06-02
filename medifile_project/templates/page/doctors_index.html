@@ -1,0 +1,235 @@
+{%extends 'base.html'%}
+{%block content%}
+<style>
+    html * {
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .h6,
+    h6 {
+        font-size: .75rem !important;
+        font-weight: 500;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.5em;
+        text-transform: uppercase;
+    }
+
+    .name h6 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+
+    a .material-icons {
+        vertical-align: middle;
+    }
+
+    .fixed-top {
+        position: fixed;
+        z-index: 1030;
+        left: 0;
+        right: 0;
+    }
+
+    .profile-page .page-header {
+        height: 80px;
+        background-position: center;
+    }
+
+    .page-header {
+        height: 100vh;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        display: flex;
+        align-items: center;
+    }
+
+
+
+
+    .main-raised {
+        margin: -60px 30px 0;
+        border-radius: 6px;
+        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+    }
+
+    .main {
+        background: #FFF;
+        position: relative;
+        z-index: 3;
+    }
+
+    .profile-page .profile {
+        text-align: center;
+    }
+
+    .profile-page .profile img {
+        max-width: 160px;
+        width: 100%;
+        margin: 0 auto;
+        -webkit-transform: translate3d(0, -50%, 0);
+        -moz-transform: translate3d(0, -50%, 0);
+        -o-transform: translate3d(0, -50%, 0);
+        -ms-transform: translate3d(0, -50%, 0);
+        transform: translate3d(0, -50%, 0);
+    }
+
+    .img-raised {
+        box-shadow: 0 5px 15px -8px rgba(0, 0, 0, .24), 0 8px 10px -5px rgba(0, 0, 0, .2);
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .img-fluid,
+    .img-thumbnail {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .title {
+        margin-top: 30px;
+        margin-bottom: 25px;
+        min-height: 32px;
+        color: #3C4858;
+        font-weight: 700;
+        font-family: "Roboto Slab", "Times New Roman", serif;
+    }
+
+    .profile-page .description {
+        margin: 1.071rem auto 0;
+        max-width: 600px;
+        color: #999;
+        font-weight: 300;
+    }
+
+    p {
+        font-size: 14px;
+        margin: 0 0 10px;
+    }
+
+    .profile-page .profile-tabs {
+        margin-top: 4.284rem;
+    }
+
+
+
+    .nav-pills .nav-item i {
+        display: block;
+        font-size: 30px;
+        padding: 15px 0;
+    }
+
+    .tab-space {
+        padding: 20px 0 50px;
+    }
+
+    .profile-page .gallery {
+        margin-top: 3.213rem;
+        padding-bottom: 50px;
+    }
+
+    .profile-page .gallery img {
+        width: 100%;
+        margin-bottom: 2.142rem;
+    }
+
+    .profile-page .profile .name {
+        margin-top: -80px;
+    }
+
+    img.rounded {
+        border-radius: 6px !important;
+    }
+
+    .tab-content>.active {
+        display: block;
+    }
+</style>
+
+
+
+<body class="profile-page">
+
+
+    <div class="page-header header-filter" data-parallax="true"
+        style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');">
+    </div>
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTU0NjQzOTk4OTQ4OTkyMzQy/ansel-elgort-poses-for-a-portrait-during-the-baby-driver-premiere-2017-sxsw-conference-and-festivals-on-march-11-2017-in-austin-texas-photo-by-matt-winkelmeyer_getty-imagesfor-sxsw-square.jpg"
+                                    alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            </div>
+                            <div class="name">
+                                <h3 class="title">{{user.name}}</h3>
+                                <h5 class="mute">Global Identification Number <br> <span
+                                        class="lead align-middle">{{user.GIN}}</span></h5>
+
+                            </div>
+                            <div class="">
+                                <h3 class="title">Currently working at logic??</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="description text-center">
+                    <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based
+                        Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel
+                        with a solid groove structure. </p>
+                </div>
+
+            </div>
+
+        </div>
+       {% include 'cards.html'%}
+        <div class='container'>
+            <table class="table table-striped">
+
+                <thead>
+                    <tr class="jumbotron">
+                        <th>PATIENTS LIST</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">no.</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">GENDER</th>
+                        <th scope="col">PHONE</th>
+                        <th scope='col'> EMAIL</th>
+                        <th scope='col'>REPORT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pat in pats%}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}
+
+                        </th>
+                        <td>{{pat.name}} {{pat.last_name}}</td>
+                        <td>{{pat.gender}}</td>
+                        <td>{{pat.phone}}</td>
+                        <td>{{pat.email}}</td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+
+
+</body>
+
+{%endblock%}

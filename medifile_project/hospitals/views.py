@@ -7,8 +7,8 @@ from django.shortcuts import render
 user = get_user_model()
 
 def hospitalIndex(request):
-    docs = user.objects.filter(is_doctor=True)
-    # print(docs)
+    docs = user.objects.filter(is_doctor=True,whichHosp=request.user.id)
+    print(request.user.id)
     
     totalDocs = docs.count()
     context = {'docs':docs,'totalDocs':totalDocs}

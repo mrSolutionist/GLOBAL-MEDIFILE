@@ -15,7 +15,7 @@ class HospitalData (models.Model):
     def __str__(self):
         return str(self.hospital.name)
 
-    @property
+    # @property
     def get_doctors(self):
         x=[i for i in user.objects.filter(is_doctor=True,whichHosp=self.pk)]
         print (x)
