@@ -42,6 +42,11 @@
       {%endif%}
       <a class="p-2 text-muted" href="#">About</a>
       <a class="p-2 text-muted" href="#">Support</a>
+      {% if user.is_doctor%}
+      <a class="p-2 text-muted" href="#">Settings</a>
+      {% elif user.is_hospital%}
+      <a class="p-2 text-muted" href="#">Settings</a>
+      {%endif%}
       
     </nav>
   </div>

@@ -1,8 +1,8 @@
 <div class="container bootstrap snippets bootdey">
     <div class="row">
         {% if user.is_doctor %}
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="mini-stat clearfix bg-facebook rounded">
+        <div class="col-md-3 col-sm-6 col-xs-12 n">
+            <div class="mini-stat clearfix bg-facebook rounded justify-content-between">
                 <span class="mini-stat-icon"><i class="fa fg-facebook">P</i></span>
                 <div class="mini-stat-info">
                     <span>{{totalPats}}</span>
@@ -10,13 +10,15 @@
                 </div>
             </div>
         </div>
-        {%else%}
+       
+        {%elif user.is_hospital%}
+        
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="mini-stat clearfix bg-twitter rounded">
                 <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter"></i></span>
                 <div class="mini-stat-info">
                     <span>7,153</span>
-                    Twitter Followers
+                    DOCTORS
                 </div>
             </div>
         </div>
@@ -25,7 +27,7 @@
                 <span class="mini-stat-icon"><i class="fa fa-google-plus fg-googleplus"></i></span>
                 <div class="mini-stat-info">
                     <span>793</span>
-                    Google+ Posts
+                    PATIENTS
                 </div>
             </div>
         </div>

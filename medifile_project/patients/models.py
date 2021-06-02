@@ -7,3 +7,4 @@ user = get_user_model()
 
 class PatientsData(models.Model):
     newPat = models.ForeignKey(user, on_delete=models.CASCADE)
+    # detailForm = models.OneToOneField(user, on_delete=models.CASCADE)
