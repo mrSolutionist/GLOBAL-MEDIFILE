@@ -3,7 +3,7 @@
 
 {% block content%}
 
-<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+<div class="page-wrapper bg-gra-03 p-t-130 p-b-100 font-poppins">
     <div class="wrapper wrapper--w680">
         <div class="card card-4">
             <div class="card-body">
@@ -74,12 +74,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <label class="label">Hosital</label>
-                        <div class="rs-select2 js-select-simple select--no-search">
-                            {{form.whichDoc}}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <label class="input-group-text" for="inputGroupSelect01">DOCTOR</label>
                         </div>
-                    </div>
+                        {{form.whichDoc}}
+                      </div>
+                    
                     <div class="p-t-15">
                         <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
                     </div>

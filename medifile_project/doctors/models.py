@@ -6,7 +6,9 @@ user = get_user_model()
 
 
 class DoctorsData(models.Model):
-    newDoc = models.ForeignKey(user,on_delete=models.CASCADE)
+    newDoc = models.ForeignKey(user, on_delete=models.CASCADE)
+
     def __str__(self):
         return str(self.newDoc.name)
+    
     

@@ -123,7 +123,7 @@ def patient_signup(request):
                                                   gender=gender, birth=birth, phone=phone, name=first_name, last_name=last_name,whichDoc=whichDoc)
                 patData = PatientsData(newPat=pat)
                 patData.save()
-                return HttpResponse("pat added")
+                return redirect("doctorsIndex")
 
         else:
             return HttpResponse("noo baby")
@@ -153,3 +153,7 @@ def Newlogin(request):
     else:
         form = AuthenticationForm()
         return render(request, "registration/login.html", {'form': form})
+
+
+def news(request):
+    return render(request,'page/news.html')

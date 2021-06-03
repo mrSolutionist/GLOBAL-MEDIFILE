@@ -3,6 +3,8 @@ from django import forms as f
 from django.contrib.auth import get_user_model
 import random
 import string
+
+from django.forms.models import model_to_dict
 from hospitals.models import HospitalData
 from doctors.models import DoctorsData
 user = get_user_model()
@@ -52,16 +54,16 @@ class DoctorSignupForm(CustomUserCreationForm):
     password2 = f.CharField(widget=f.PasswordInput(
         attrs={'class': 'input--style-4', 'placeholder': 'retype'}))
 
-    whichHosp = f.ModelChoiceField(queryset=HospitalData.objects.all())
-
-   
+    whichHosp = f.ModelChoiceField(queryset=user.objects.filter(hospitaldata__isnull=False), widget=f.Select(attrs={'class': 'custom-select', 'id': 'inputGroupSelect01'}))
     class Meta:
         model = user
         fields = ('email', 'name', 'last_name',
-                  'phone', 'birth', 'gender','whichHosp')
+                  'phone', 'birth', 'gender', 'whichHosp')
 
 
 class PatientsSignupForm(CustomUserCreationForm):
+    x =DoctorsData.objects.all().values_list('newDoc__name',flat=True)
+    # C_OICE = (i.newDoc__name for i in  x)
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -85,8 +87,9 @@ class PatientsSignupForm(CustomUserCreationForm):
         attrs={'class': 'input--style-4', 'placeholder': 'password'}))
     password2 = f.CharField(widget=f.PasswordInput(
         attrs={'class': 'input--style-4', 'placeholder': 'retype'}))
-        
-    whichDoc = f.ModelChoiceField(queryset=DoctorsData.objects.all())
+
+    whichDoc = f.ModelChoiceField(queryset=user.objects.filter(doctorsdata__isnull=False), widget=f.Select(
+        attrs={'class': 'custom-select', 'id': 'inputGroupSelect01'}))
 
     class Meta:
         model = user
