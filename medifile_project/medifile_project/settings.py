@@ -147,8 +147,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'therobins.dev@gmail.com'
+EMAIL_HOST_PASSWORD = 'pqwscubhcxikpvph'
 
 
 LOGOUT_REDIRECT_URL = 'index'

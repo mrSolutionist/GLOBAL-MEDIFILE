@@ -62,7 +62,7 @@ class DoctorSignupForm(CustomUserCreationForm):
 
 
 class PatientsSignupForm(CustomUserCreationForm):
-    x =DoctorsData.objects.all().values_list('newDoc__name',flat=True)
+    # x =DoctorsData.objects.all().values_list('newDoc__name',flat=True)
     # C_OICE = (i.newDoc__name for i in  x)
     GENDER_CHOICES = (
         ('M', 'Male'),

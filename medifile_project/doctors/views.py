@@ -7,7 +7,7 @@ user = get_user_model()
 
 def doctorsIndex(request):
    
-    hospital = user.objects.get(id=request.user.whichHosp)
+    hospital =  user.objects.get(id=request.user.whichHosp) 
     print (hospital)
     pats = user.objects.filter(is_patient=True, whichDoc=request.user.id)
     print (pats)

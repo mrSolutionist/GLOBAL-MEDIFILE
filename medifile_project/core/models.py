@@ -71,13 +71,15 @@ class NewUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, GIN, name, password):
+    def create_superuser(self, GIN,email, name, password):
 
         user = self.create_user(
             GIN,
-            name,
+            email=email,
+            name=name,
             password=password,
         )
+        user.is_superuser= True
         user.staff = True
         user.admin = True
         user.save(using=self._db)
@@ -87,7 +89,6 @@ class NewUserManager(BaseUserManager):
 class NewUser(AbstractBaseUser):
     gender = models.CharField(null=True, max_length=1)
 
-    # GIN = models.IntegerField(unique=True)  # general id number ,unique
     GIN = models.CharField(max_length=6, null=True, blank=True, unique=True)
 
     age = models.IntegerField(null=True)
@@ -112,7 +113,9 @@ class NewUser(AbstractBaseUser):
 
     staff = models.BooleanField(default=False, null=True)  # staff
 
-    admin = models.BooleanField(default=False, null=True)  # superuser
+    admin = models.BooleanField(default=False, null=True)  # admin
+    
+    superuser = models.BooleanField(default=False, null=True)  # superuser
 
     whichHosp = models.CharField(max_length=255, null=True)
 
@@ -140,3 +143,8 @@ class NewUser(AbstractBaseUser):
     @property                   # ??
     def is_admin(self):
         return self.admin
+
+    @property                   # ??
+    def is_superuser(self):
+        return self.superuser
+
